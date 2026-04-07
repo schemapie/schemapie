@@ -1,0 +1,12 @@
+[project]
+name = "schemapie"
+version = "0.1.0"
+description = "Generates API schemas from API responses. Supports the documentation of new APIs. Helps to better understand poorly documented APIs."
+requires-python = ">=3.8"
+dependencies = [
+  "requests",
+  "argparse",
+]
+
+[project.scripts]
+spi = "schemapie.cli:main"
