@@ -9,7 +9,7 @@ dependencies = [
 ]
 
 [project.scripts]
-spi = "schemapie.cli:main"
+bake = "schemapie.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["schemapie*"]

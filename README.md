@@ -1,5 +1,5 @@
 # About
-Small python CLI tool to automatically generate a simple API schema.
+Small python CLI tool to automatically generate API schemas... schemapie helps you bake schema pies!
 
 ## Usage
 Make sure your `domain` is correct and complete, containing any versioning or other API details like `api.domain.com/v1` if applicable. You can both save the schema and source an existing schema using the optional `--file` argument.
@@ -11,12 +11,12 @@ Make sure your `domain` is correct and complete, containing any versioning or ot
 
 **Call Without File**
 ```bash
-spi 'https://domain.com/v1/endpoint/etc?params={param}'
+bake 'https://domain.com/v1/endpoint/etc?params={param}'
 ```
 
 **Call With File**
 ```bash
-spi 'https://api.domain.com/v1/endpoint/etc' --file='schema.json'
+bake 'https://api.domain.com/v1/endpoint/etc' --file='schema.json'
 ```
 
 ## Installation

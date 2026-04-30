@@ -14,6 +14,18 @@ TYPE_MAP = {
 def get_type(object: any):
     return TYPE_MAP.get(type(object).__name__)
 
+def execute(url: str, file: str = None, verbose: bool = False):
+    print(f"Fetching data from {url}...")
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        meta = flatten(data=data, verbose=verbose)
+        schema = merge(meta=meta, schema=read(file=file) if file else {})
+        write(schema=schema, file=file) if file else display(schema=schema)
+    else:
+        print(f"Error: {response.status_code} - {response.text}")
+
 def flatten(data: dict | list, path: str = "", meta: dict = None, verbose: bool = False):
     """Flattens each object in the API response into a dictionary object containing {path: details}."""
     if meta is None:
@@ -60,15 +72,3 @@ def build(schema: dict, path: list, value: dict):
         else:
             current[p].setdefault("children", {})
             current = current[p]["children"]
-
-def execute(url: str, file: str = None, verbose: bool = False):
-    print(f"Fetching data from {url}...")
-
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        meta = flatten(data=data, verbose=verbose)
-        schema = merge(meta=meta, schema=read(file=file) if file else {})
-        write(schema=schema, file=file) if file else display(schema=schema)
-    else:
-        print(f"Error: {response.status_code} - {response.text}")
